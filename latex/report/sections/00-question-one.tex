@@ -1,0 +1,53 @@
+% question one
+\question{1}{0.6}{First generate the variable BMI, where BMI equals weight in kg divided by height in meters squared (BMI = weight/(height²)). Construct a categorical variable for BMI that considers the commonly used categories: i) underweight, BMI below 18.5; ii) normal weight, BMI larger or equal to 18.5 and lower than 25; iii) overweight, BMI larger or equal to 25 and lower than 30; iv) obese, BMI of 30 or higher. Compute and report the prevalence of overweight and obesity by ethnic group (black vs non-black). What differences do you observe?}
+
+\begin{minted}{stata}
+gen height_m = height / 100
+gen bmi = weight / (height_m^2)
+\end{minted}
+
+\begin{minted}{stata}
+gen bmi_cat = .
+replace bmi_cat = 1 if bmi < 18.5 & !missing(bmi)
+replace bmi_cat = 2 if bmi >= 18.5 & bmi < 25 & !missing(bmi)
+replace bmi_cat = 3 if bmi >= 25 & bmi < 30 & !missing(bmi)
+replace bmi_cat = 4 if bmi >= 30 & !missing(bmi)    
+\end{minted}
+
+\subquestion{a}{Compute and report the prevalence of overweight and obesity by ethnic group (black vs non-black). What differences do you observe?}
+
+\begin{minted}{stata}
+gen overweight = (bmi_cat >= 3) if !missing(bmi_cat)
+gen obese = (bmi_cat == 4) if !missing(bmi_cat)
+\end{minted}
+
+\begin{minted}{stata}
+tab black overweight, row missing
+tab black obese, row missing
+\end{minted}
+
+\begin{minted}{stata}
+hist income, by(black) ///
+    title("Income Distribution by Ethnic Group") ///
+    xtitle("Household Income (Euros)") ///
+    percent    
+\end{minted}
+
+\begin{minted}{stata}
+graph box income, over(black) ///
+	title("Income Distribution by Ethnic Group") ///
+	ytitle("Household Income (Euros)")
+\end{minted}
+
+\begin{minted}{stata}
+gen bmi_miss = missing(bmi)
+tab black bmi_miss, row missing
+\end{minted}
+
+\begin{minted}{stata}
+sum income
+\end{minted}
+
+
+
+\newpage

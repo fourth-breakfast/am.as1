@@ -404,3 +404,7 @@ Race: Black (1=Yes, 0=No) & \multicolumn{2}{c}{0} & \multicolumn{2}{c}{1} & \mul
 .&1&100.0\%&0&0.0\%&0&0.0\%&1&100.0\% \\
 Total&101&22.0\%&346&75.2\%&13&2.8\%&460&100.0\% \\
 
+. save "C:/Users/andres/repositories/am.as1/stata/data/clean/income_bmi_clean.dta", replace
+file C:/Users/andres/repositories/am.as1/stata/data/clean/income_bmi_clean.dta saved
+
+. exit

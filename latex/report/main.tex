@@ -1,51 +1,14 @@
 \documentclass[paper=a4, DIV=12, fontsize=12pt, parskip=full]{scrartcl}
 
-\begin{document}
+\usepackage{import}
+\import{src}{00-typography}
+\import{src}{01-title}
+\import{src}{02-globals}
+\import{src}{03-bibliography}
 
+\begin{document}
 \maketitle
 
-% question one
-\question{1}{0.6}{First generate the variable BMI, where BMI equals weight in kg divided by height in meters squared (BMI = weight/(height²)). Construct a categorical variable for BMI that considers the commonly used categories: i) underweight, BMI below 18.5; ii) normal weight, BMI larger or equal to 18.5 and lower than 25; iii) overweight, BMI larger or equal to 25 and lower than 30; iv) obese, BMI of 30 or higher. Compute and report the prevalence of overweight and obesity by ethnic group (black vs non-black). What differences do you observe?}
+\import{sections}{00-question-one}
 
-We begin by generating the \icode{bmi} variable using the \icode{gen} command. Note that, since Body Mass Index is calculated as weight in kilograms divided by height in meters squared\footnote{World Health Organization. (2000). \textit{Obesity: preventing and managing the global epidemic}. WHO Technical Report Series, 894. Geneva: World Health Organization.}, we must convert the \icode{height} variable from centimeters to meters before the calculation:
-
-\begin{minted}{stata}
-gen height_m = height / 100
-gen bmi = weight / (height_m^2)
-\end{minted}
-
-\newpage
-
-We can then construct \icode{bmi_cat}, our categorical BMI variable:
-
-\begin{minted}{stata}
-gen bmi_cat = .
-replace bmi_cat = 1 if bmi < 18.5 & !missing(bmi)
-replace bmi_cat = 2 if bmi >= 18.5 & bmi < 25 & !missing(bmi)
-replace bmi_cat = 3 if bmi >= 25 & bmi < 30 & !missing(bmi)
-replace bmi_cat = 4 if bmi >= 30 & !missing(bmi)    
-\end{minted}
-
-By adding \icode{& !missing(bmi)} to our \icode{if} statement, we ensure that only individuals with a reported BMI get a categorical BMI value. This is due to the fact that Stata codes missing values as larger than any nonmissing values\footnote{Gould, W. (n.d.). \textit{Stata | FAQ: Logical expressions and missing values}. Stata Corp. Retrieved\\September 14, 2025, from https://www.stata.com/support/faqs/data-management/\\logical-expressions-and-missing-values/}.
-
-\subquestion{a}{Compute and report the prevalence of overweight and obesity by ethnic group (black vs non-black). What differences do you observe?}
-
-In order to compute the prevalence of overweight and obesity by ethnic group, two dummy variables can be created. The first, \icode{overweight}, includes all overweight and obese individuals. The second, \icode{obese}, includes only obese individuals.
-
-\begin{minted}{stata}
-gen overweight = (bmi_cat >= 3) if !missing(bmi_cat)
-gen obese = (bmi_cat == 4) if !missing(bmi_cat)
-\end{minted}
-
-In order to facilitate comparison, tables can be generated with the following commands: 
-
-\begin{minted}{stata}
-tab black overweight, row missing
-tab black obese, row missing
-\end{minted}
-
-The option \icode{row} allows us to see row percentages, while the option \icode{missing} includes individuals with missing data.
-
-\newpage
-
-\end{document}
+\end{document}  
