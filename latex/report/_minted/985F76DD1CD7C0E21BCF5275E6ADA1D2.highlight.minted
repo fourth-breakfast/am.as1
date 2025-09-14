@@ -1,6 +1,0 @@
-\begin{MintedVerbatim}[commandchars=\\\{\}]
-\PYG{c+c1}{* Generate BMI variable}
-\PYG{k}{generate} bmi = weight \PYG{o}{/} (height\PYG{o}{\PYGZca{}}\PYG{l+m}{2})
-\PYG{k}{summarize} bmi
-\PYG{k}{histogram} bmi, normal
-\end{MintedVerbatim}

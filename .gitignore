@@ -1,4 +1,14 @@
+# LaTeX auxiliary files
 latex/**/*.aux
-latex/**/*.fdb_latexmk
-latex/**/*.fls
 latex/**/*.log
+latex/**/*.fls
+latex/**/*.fdb_latexmk
+latex/**/*.synctex.gz
+latex/**/*.out
+latex/**/*.toc
+latex/**/*.nav
+latex/**/*.snm
+latex/**/*.vrb
+
+# minted
+*.minted

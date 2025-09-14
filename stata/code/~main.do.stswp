@@ -17,7 +17,7 @@ set more off
 version 18
 
 ssc install estout
-ssc install tabout
+ssc install tab
 
 // globals
 global project "C:/Users/andres/repositories/am.as1/stata"

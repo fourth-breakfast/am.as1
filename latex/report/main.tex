@@ -1,21 +1,31 @@
-\documentclass[paper=a4, DIV=12, fontsize=11pt, parskip=full]{scrartcl}
+\documentclass[paper=a4, DIV=10, fontsize=12pt, parskip=full]{scrartcl}
 
+% font
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{lmodern}
-\usepackage{inconsolata}
+\usepackage{kpfonts}
+\usepackage[scaled=0.95]{inconsolata}
 
-\setkomafont{subject}{\normalfont\bfseries\Large}
+% typography
+\setkomafont{subject}{\normalfont\bfseries\large}
 \setkomafont{title}{\normalfont\bfseries}
-\setkomafont{subtitle}{\normalfont\bfseries\Large}
+\setkomafont{subtitle}{\normalfont\bfseries\large}
+\setkomafont{author}{\normalfont\normalsize}
+\setkomafont{date}{\normalfont\bfseries\normalsize}
+
 \setkomafont{disposition}{\normalfont\bfseries}
-\setkomafont{section}{\large}
+\setkomafont{section}{\normalsize}
 
-\RedeclareSectionCommand[
-  beforeskip=1\baselineskip,
-  afterskip=0.01mm
-]{section}
+% minted
+\usepackage{minted}
+\setminted{style=stata-light,bgcolor=gray!5,linenos=true}
 
+% commands
+\newcommand{\question}[3]{\section*{\underbar{Question #1 [#2 points]}}\vspace{-1em}\textit{#3}}
+\newcommand{\subquestion}[2]{\textit{#1) #2}}
+\newcommand{\icode}[1]{\mintinline{stata}{#1}}
+
+%headers
 \usepackage{scrlayer-scrpage}
 \clearpairofpagestyles
 \ihead{FEM11087}
@@ -23,11 +33,10 @@
 \ohead{Fall 25}
 \cfoot{\pagemark}
 
+%title
 \subject{FEM 11087 - Applied Microeconometrics}
-\title{Assignment 1: Empirical Analysis}
-\subtitle{Regression Analysis with Cross-Sectional Data,\\
-Endogeneity and Instrumental Variable Estimation}
-
+\title{\Large{Assignment 1: Empirical Analysis}}
+\subtitle{Regression Analysis with Cross-Sectional Data, Endogeneity and Instrumental Variable Estimation}
 \author{\textbf{Group 23}\\[0.5em]
     Kees-Piet Barnhoorn\\
     Tyler McGee\\
@@ -39,7 +48,13 @@ Endogeneity and Instrumental Variable Estimation}
 
 \maketitle
 
-\section*{{Question 1 [0.6 points]}}
-\textit{First generate the variable BMI, where BMI equals weight in kg divided by height in meters squared (BMI = weight/(height²)). Construct a categorical variable for BMI that considers the commonly used categories: i) underweight, BMI below 18.5; ii) normal weight, BMI larger or equal to 18.5 and lower than 25; iii) overweight, BMI larger or equal to 25 and lower than 30; iv) obese, BMI of 30 or higher. Compute and report the prevalence of overweight and obesity by ethnic group (black vs non-black). What differences do you observe?}
+% question one
+\question{1}{0.6}{First generate the variable BMI, where BMI equals weight in kg divided by height in meters squared (BMI = weight/(height²)). Construct a categorical variable for BMI that considers the commonly used categories: i) underweight, BMI below 18.5; ii) normal weight, BMI larger or equal to 18.5 and lower than 25; iii) overweight, BMI larger or equal to 25 and lower than 30; iv) obese, BMI of 30 or higher. Compute and report the prevalence of overweight and obesity by ethnic group (black vs non-black). What differences do you observe?}
+
+
+
+\subquestion{a}{Compute and report the prevalence of overweight and obesity by ethnic group (black vs non-black). What differences do you observe?}
+
+
 
 \end{document}
