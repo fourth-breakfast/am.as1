@@ -1,0 +1,45 @@
+\documentclass[paper=a4, DIV=12, fontsize=11pt, parskip=full]{scrartcl}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{inconsolata}
+
+\setkomafont{subject}{\normalfont\bfseries\Large}
+\setkomafont{title}{\normalfont\bfseries}
+\setkomafont{subtitle}{\normalfont\bfseries\Large}
+\setkomafont{disposition}{\normalfont\bfseries}
+\setkomafont{section}{\large}
+
+\RedeclareSectionCommand[
+  beforeskip=1\baselineskip,
+  afterskip=0.01mm
+]{section}
+
+\usepackage{scrlayer-scrpage}
+\clearpairofpagestyles
+\ihead{FEM11087}
+\chead{Group 23}
+\ohead{Fall 25}
+\cfoot{\pagemark}
+
+\subject{FEM 11087 - Applied Microeconometrics}
+\title{Assignment 1: Empirical Analysis}
+\subtitle{Regression Analysis with Cross-Sectional Data,\\
+Endogeneity and Instrumental Variable Estimation}
+
+\author{\textbf{Group 23}\\[0.5em]
+    Kees-Piet Barnhoorn\\
+    Tyler McGee\\
+    Andres Pinon\\
+    Jolien Schaeffers}
+\date{16 September 2025}
+
+\begin{document}
+
+\maketitle
+
+\section*{{Question 1 [0.6 points]}}
+\textit{First generate the variable BMI, where BMI equals weight in kg divided by height in meters squared (BMI = weight/(height²)). Construct a categorical variable for BMI that considers the commonly used categories: i) underweight, BMI below 18.5; ii) normal weight, BMI larger or equal to 18.5 and lower than 25; iii) overweight, BMI larger or equal to 25 and lower than 30; iv) obese, BMI of 30 or higher. Compute and report the prevalence of overweight and obesity by ethnic group (black vs non-black). What differences do you observe?}
+
+\end{document}
