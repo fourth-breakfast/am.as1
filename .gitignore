@@ -10,5 +10,9 @@ latex/**/*.nav
 latex/**/*.snm
 latex/**/*.vrb
 
+latex/**/*.bbl
+main.listing
+main.synctex.gz
+
 # minted
 *.minted

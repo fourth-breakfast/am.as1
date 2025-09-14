@@ -1,48 +1,4 @@
-\documentclass[paper=a4, DIV=10, fontsize=12pt, parskip=full]{scrartcl}
-
-% font
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{kpfonts}
-\usepackage[scaled=0.95]{inconsolata}
-
-% typography
-\setkomafont{subject}{\normalfont\bfseries\large}
-\setkomafont{title}{\normalfont\bfseries}
-\setkomafont{subtitle}{\normalfont\bfseries\large}
-\setkomafont{author}{\normalfont\normalsize}
-\setkomafont{date}{\normalfont\bfseries\normalsize}
-
-\setkomafont{disposition}{\normalfont\bfseries}
-\setkomafont{section}{\normalsize}
-
-% minted
-\usepackage{minted}
-\setminted{style=stata-light,bgcolor=gray!5,linenos=true}
-
-% commands
-\newcommand{\question}[3]{\section*{\underbar{Question #1 [#2 points]}}\vspace{-1em}\textit{#3}}
-\newcommand{\subquestion}[2]{\textit{#1) #2}}
-\newcommand{\icode}[1]{\mintinline{stata}{#1}}
-
-%headers
-\usepackage{scrlayer-scrpage}
-\clearpairofpagestyles
-\ihead{FEM11087}
-\chead{Group 23}
-\ohead{Fall 25}
-\cfoot{\pagemark}
-
-%title
-\subject{FEM 11087 - Applied Microeconometrics}
-\title{\Large{Assignment 1: Empirical Analysis}}
-\subtitle{Regression Analysis with Cross-Sectional Data, Endogeneity and Instrumental Variable Estimation}
-\author{\textbf{Group 23}\\[0.5em]
-    Kees-Piet Barnhoorn\\
-    Tyler McGee\\
-    Andres Pinon\\
-    Jolien Schaeffers}
-\date{16 September 2025}
+\documentclass[paper=a4, DIV=12, fontsize=12pt, parskip=full]{scrartcl}
 
 \begin{document}
 
@@ -51,10 +7,45 @@
 % question one
 \question{1}{0.6}{First generate the variable BMI, where BMI equals weight in kg divided by height in meters squared (BMI = weight/(height²)). Construct a categorical variable for BMI that considers the commonly used categories: i) underweight, BMI below 18.5; ii) normal weight, BMI larger or equal to 18.5 and lower than 25; iii) overweight, BMI larger or equal to 25 and lower than 30; iv) obese, BMI of 30 or higher. Compute and report the prevalence of overweight and obesity by ethnic group (black vs non-black). What differences do you observe?}
 
+We begin by generating the \icode{bmi} variable using the \icode{gen} command. Note that, since Body Mass Index is calculated as weight in kilograms divided by height in meters squared\footnote{World Health Organization. (2000). \textit{Obesity: preventing and managing the global epidemic}. WHO Technical Report Series, 894. Geneva: World Health Organization.}, we must convert the \icode{height} variable from centimeters to meters before the calculation:
 
+\begin{minted}{stata}
+gen height_m = height / 100
+gen bmi = weight / (height_m^2)
+\end{minted}
+
+\newpage
+
+We can then construct \icode{bmi_cat}, our categorical BMI variable:
+
+\begin{minted}{stata}
+gen bmi_cat = .
+replace bmi_cat = 1 if bmi < 18.5 & !missing(bmi)
+replace bmi_cat = 2 if bmi >= 18.5 & bmi < 25 & !missing(bmi)
+replace bmi_cat = 3 if bmi >= 25 & bmi < 30 & !missing(bmi)
+replace bmi_cat = 4 if bmi >= 30 & !missing(bmi)    
+\end{minted}
+
+By adding \icode{& !missing(bmi)} to our \icode{if} statement, we ensure that only individuals with a reported BMI get a categorical BMI value. This is due to the fact that Stata codes missing values as larger than any nonmissing values\footnote{Gould, W. (n.d.). \textit{Stata | FAQ: Logical expressions and missing values}. Stata Corp. Retrieved\\September 14, 2025, from https://www.stata.com/support/faqs/data-management/\\logical-expressions-and-missing-values/}.
 
 \subquestion{a}{Compute and report the prevalence of overweight and obesity by ethnic group (black vs non-black). What differences do you observe?}
 
+In order to compute the prevalence of overweight and obesity by ethnic group, two dummy variables can be created. The first, \icode{overweight}, includes all overweight and obese individuals. The second, \icode{obese}, includes only obese individuals.
 
+\begin{minted}{stata}
+gen overweight = (bmi_cat >= 3) if !missing(bmi_cat)
+gen obese = (bmi_cat == 4) if !missing(bmi_cat)
+\end{minted}
+
+In order to facilitate comparison, tables can be generated with the following commands: 
+
+\begin{minted}{stata}
+tab black overweight, row missing
+tab black obese, row missing
+\end{minted}
+
+The option \icode{row} allows us to see row percentages, while the option \icode{missing} includes individuals with missing data.
+
+\newpage
 
 \end{document}
