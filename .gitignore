@@ -11,8 +11,8 @@ latex/**/*.snm
 latex/**/*.vrb
 
 latex/**/*.bbl
-main.listing
-main.synctex.gz
+latex/**/*.listing
+latex/**/*.synctex.gz
 
 # minted
-*.minted
+latex/**/_minted
