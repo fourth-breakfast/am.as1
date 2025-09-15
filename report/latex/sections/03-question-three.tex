@@ -5,8 +5,65 @@
 
 \subquestion{a}{Do you think this assumption is likely to hold? Explain.}
 
+The above assumption is not likely to hold. In reality, we would expect values both at the very high and very low BMI thresholds to be associated with lower income, suggesting a non-linear relationship.
+
+Extremely low BMI could account for malnutrition or severe health issues, both of which we would expect to be related to lower incomes, as malnutrition shows difficultty accessing resources and severe health issues might limit an individual's capacity to earn a stable income.
+
+While it is true that a higher BMI might be related to abundance, an extremely high BMI would be related to medical problems as severe as those found in extremely low BMI cases. It is worth noting that social stigma could also negatively impact an individual's ability to secure an income while extremely overweight.
+
 \subquestion{b}{Add $\boldsymbol{BMI^2}$ to the regression of question 2 and estimate it. What is the estimated effect of BMI on income? In your answer, interpret the effect at two different points of the BMI distribution.}
 
-\subquestion{c}{How does adding $BMI^2$ capture non-linearities in the relationship between BMI and income?}
+\begin{minted}{stata}
+gen bmi2 = bmi^2
+reg income bmi bmi2 black, robust    
+\end{minted}
+
+\begin{minted}{stata}
+Linear regression                               Number of obs     =        445
+                                                F(3, 441)         =       0.99
+                                                Prob > F          =     0.3967
+                                                R-squared         =     0.0049
+                                                Root MSE          =      39257
+
+------------------------------------------------------------------------------
+             |               Robust
+      income | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+         bmi |     390.96   2387.682     0.16   0.870    -4301.689    5083.609
+        bmi2 |  -10.84818   35.06745    -0.31   0.757    -79.76827    58.07192
+       black |  -4812.927   5110.758    -0.94   0.347     -14857.4    5231.542
+       _cons |    40704.1   39289.77     1.04   0.301    -36514.35    117922.5
+------------------------------------------------------------------------------
+\end{minted}
+
+Analyzing the new model, we can see that the \icode{bmi} coefficient is now positive, while the \icode{bmi2} coefficient is negative. This suggests quadratic relationship where income first increases with BMI, then decreases. It follows the form
+
+\begin{equation}
+    \text{Income} = 40,704 + 390.96 \times \text{BMI} - 10.85 \times \text{BMI}^2
+\end{equation}
+
+We will compare the effects of BMI on income taking two points, BMI = 20 and BMI = 30. In the first case, we get 
+
+\vspace{-1em}
+
+\begin{equation}
+    40,704 + 390.96 \times 20 - 10.85 \times 20 = 44,183.2
+\end{equation}
+
+while, in the second case, we get
+
+\vspace{-1em}
+
+\begin{equation}
+    40,704 + 390.96 \times 30 - 10.85 \times 30 = 42,667.8
+\end{equation}
+
+We see that income is lower at 30 BMI compared to 20 BMI. This coincides with our prediction that the relationship between income and BMI follows a non-linear pattern.
+
+\subquestion{c}{How does adding $BMI^2$ capture non-linearities in the relationship between BMI and income?},
+
+At BMI 15, the marginal effect would be positive but at BMI 35, the marginal effect becomes negative. Since a linear model cannot take this pattern into account, adding $BMI^2$ allows the slope of our model to change at different BMI values.
 
 \subquestion{d}{What is your \textbf{preferred specification} (2 or 3)? Explain.}
+
+The specification that includes $BMI^2$ is preffered over the original especification, since it allows the model to capture the relationship between income and BMI without assuming a linear pattern between the two.

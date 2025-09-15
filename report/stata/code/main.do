@@ -15,9 +15,6 @@ clear all
 set more off
 version 18
 
-// ssc install estout, replace
-// ssc install tabout, replace
-
 // globals
 global project "C:/Users/andres/repositories/am.as1/report/stata"
 
@@ -57,26 +54,26 @@ tab black overweight, row missing
 tab black obese, row missing
 
 // b
-hist income, by(black) ///
-    title("Income Distribution by Ethnic Group") ///
-    xtitle("Household Income (Euros)") ///
-    percent
-
 graph box income, over(black) ///
-	title("Income Distribution by Ethnic Group") ///
-	ytitle("Household Income (Euros)")
+    title("Income Distribution by Ethnic Group") ///
+    ytitle("Household Income (Euros)")
+	
+graph export "$figures/income_boxplot.png", replace
 
 // c
 gen bmi_miss = missing(bmi)
 tab black bmi_miss, row missing
 
 // d
-sum income
-sum black
-sum bmi
-sum bmi_cat
-sum overweight
-sum obese
+sum income height weight bmi
+list income height weight if income < 0 | income > 500000
+list height weight if height < 100 | height > 250
+list bmi if bmi < 10 | bmi > 60
+
+gen flag_income = (income < 0 | income > 500000)
+gen flag_height = (height < 100 | height > 250)
+gen flag_bmi = (bmi < 10 | bmi > 60)
+drop if flag_income == 1 | flag_height == 1 | flag_bmi == 1
 
 // question two
 reg income bmi black, robust
@@ -87,7 +84,7 @@ scalar mean_income = r(mean)
 scalar black_coeff = _b[black]
 
 display "Mean income: $" mean_income
-display "Black coefficient: $" black_coeff  
+display "Black coefficient: $" black_coeff
 display "Ratio: " (black_coeff/mean_income)*100 "%"
 
 // question three

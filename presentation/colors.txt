@@ -1,0 +1,4 @@
+dark blue #22363A
+orange #EB811A
+background #F9F9F9
+red #D10000
