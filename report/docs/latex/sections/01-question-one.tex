@@ -1,0 +1,79 @@
+% question one
+\question{1}{0.6 points}
+
+\note{First generate the variable BMI, where BMI equals weight in kg divided by height in meters squared (BMI = weight/(height²)). Construct a categorical variable for BMI that considers the commonly used categories: i) underweight, BMI below 18.5; ii) normal weight, BMI larger or equal to 18.5 and lower than 25; iii) overweight, BMI larger or equal to 25 and lower than 30; iv) obese, BMI of 30 or higher. Compute and report the prevalence of overweight and obesity by ethnic group (black vs non-black). What differences do you observe?}
+
+We begin by creating the \icode{bmi} variable. Note that, since Body Mass Index\footnote{\cite{who_2000}} is calculated as
+
+\vspace{-1em}
+
+\begin{equation*}
+    BMI = \frac{\text{weight (kg)}}{\text{height (m)}^2}
+\end{equation*}
+
+we must first convert our \icode{height} variable from centimeters to meters using a conversion factor of 100. We can generate both \icode{height_m} and \icode{bmi} through the use of the \icode{gen} command:
+
+\begin{minted}{stata}
+gen height_m = height / 100
+gen bmi = weight / (height_m^2)
+\end{minted}
+
+Our categorical BMI variable \icode{bmi_cat} can then be constructed through the use of the \icode{replace} command:
+
+\begin{minted}{stata}
+gen bmi_cat = .
+replace bmi_cat = 1 if bmi < 18.5 & !missing(bmi)
+replace bmi_cat = 2 if bmi >= 18.5 & bmi < 25 & !missing(bmi)
+replace bmi_cat = 3 if bmi >= 25 & bmi < 30 & !missing(bmi)
+replace bmi_cat = 4 if bmi >= 30 & !missing(bmi)    
+\end{minted}
+
+The addition of \icode{!missing(bmi)} to the \icode{if} statements prevents Stata from assigning observations with missing \icode{bmi} values a \icode{bmi_cat} value of 4. This occurs due to Stata coding all missing values (., .a, .b, .c, ..., .z) as larger than any non-missing value.\footnote{\cite{gould_stata}}
+
+\subquestion{a}{Compute and report the \textbf{prevalence of overweight and obesity} by ethnic group (black vs non-black). What differences do you observe?}
+
+We first create binary indicators for overweight and obesity status:
+
+\begin{minted}{stata}
+gen overweight = (bmi_cat >= 3) if !missing(bmi_cat)
+gen obese = (bmi_cat == 4) if !missing(bmi_cat)
+\end{minted}
+
+Importantly, our overweight indicator includes both overweight (BMI 25-29.9) and obese (BMI $\geq$ 30) individuals, allowing us to more clearly compare the prevalence of both categories by ethnic group.
+
+The prevalence rates are computed using:
+
+\begin{minted}{stata}
+tab black overweight, row missing
+tab black obese, row missing
+\end{minted}
+
+\input{}
+
+\subquestion{b}{Make an appropriate graph to \textbf{compare income distributions} across ethnic groups and discuss what you see.}
+
+\begin{minted}{stata}
+hist income, by(black) ///
+    title("Income Distribution by Ethnic Group") ///
+    xtitle("Household Income (Euros)") ///
+    percent    
+\end{minted}
+
+\begin{minted}{stata}
+graph box income, over(black) ///
+	title("Income Distribution by Ethnic Group") ///
+	ytitle("Household Income (Euros)")
+\end{minted}
+
+\subquestion{c}{If there are \textbf{missing values} for BMI, discuss how they may impact the validity of your regression analysis.}
+
+\begin{minted}{stata}
+gen bmi_miss = missing(bmi)
+tab black bmi_miss, row missing
+\end{minted}
+
+\subquestion{d}{If there are \textbf{unreliable or implausible} values in any of the variables of interest, describe how you would identify them and drop them before proceeding with the rest of the analysis.}
+
+\begin{minted}{stata}
+sum income
+\end{minted}

@@ -1,0 +1,4 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k}{gen} bmi\PYGZus{}miss = \PYG{n+nf}{missing}(bmi)
+\PYG{k}{tab} black bmi\PYGZus{}miss, row missing
+\end{MintedVerbatim}

@@ -1,0 +1,4 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k}{gen} height\PYGZus{}m = height \PYG{o}{/} \PYG{l+m}{100}
+\PYG{k}{gen} bmi = weight \PYG{o}{/} (height\PYGZus{}m\PYG{o}{\PYGZca{}}\PYG{l+m}{2})
+\end{MintedVerbatim}

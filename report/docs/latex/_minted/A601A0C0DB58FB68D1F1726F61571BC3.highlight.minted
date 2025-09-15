@@ -1,0 +1,6 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k}{hist} income,\PYG{k}{ by}(black) \PYG{c+cs}{///}
+    title(\PYG{l+s}{\PYGZdq{}Income Distribution by Ethnic Group\PYGZdq{}}) \PYG{c+cs}{///}
+    xtitle(\PYG{l+s}{\PYGZdq{}Household Income (Euros)\PYGZdq{}}) \PYG{c+cs}{///}
+    percent
+\end{MintedVerbatim}

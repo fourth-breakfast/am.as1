@@ -1,0 +1,7 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k}{gen} bmi\PYGZus{}cat = .
+\PYG{k}{replace} bmi\PYGZus{}cat = \PYG{l+m}{1}\PYG{k}{ if} bmi \PYG{o}{\PYGZlt{}} \PYG{l+m}{18.5} \PYG{o}{\PYGZam{}} \PYG{o}{!}\PYG{n+nf}{missing}(bmi)
+\PYG{k}{replace} bmi\PYGZus{}cat = \PYG{l+m}{2}\PYG{k}{ if} bmi \PYG{o}{\PYGZgt{}=} \PYG{l+m}{18.5} \PYG{o}{\PYGZam{}} bmi \PYG{o}{\PYGZlt{}} \PYG{l+m}{25} \PYG{o}{\PYGZam{}} \PYG{o}{!}\PYG{n+nf}{missing}(bmi)
+\PYG{k}{replace} bmi\PYGZus{}cat = \PYG{l+m}{3}\PYG{k}{ if} bmi \PYG{o}{\PYGZgt{}=} \PYG{l+m}{25} \PYG{o}{\PYGZam{}} bmi \PYG{o}{\PYGZlt{}} \PYG{l+m}{30} \PYG{o}{\PYGZam{}} \PYG{o}{!}\PYG{n+nf}{missing}(bmi)
+\PYG{k}{replace} bmi\PYGZus{}cat = \PYG{l+m}{4}\PYG{k}{ if} bmi \PYG{o}{\PYGZgt{}=} \PYG{l+m}{30} \PYG{o}{\PYGZam{}} \PYG{o}{!}\PYG{n+nf}{missing}(bmi)
+\end{MintedVerbatim}

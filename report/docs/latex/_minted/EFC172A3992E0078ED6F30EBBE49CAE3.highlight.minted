@@ -1,0 +1,5 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k}{graph} box income, over(black) \PYG{c+cs}{///}
+	title(\PYG{l+s}{\PYGZdq{}Income Distribution by Ethnic Group\PYGZdq{}}) \PYG{c+cs}{///}
+	ytitle(\PYG{l+s}{\PYGZdq{}Household Income (Euros)\PYGZdq{}})
+\end{MintedVerbatim}

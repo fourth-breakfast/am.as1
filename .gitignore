@@ -12,11 +12,18 @@ latex/**/*.vrb
 
 latex/**/*.bbl
 latex/**/*.listing
+
+latex/**/*.synctex*
 latex/**/*.synctex.gz
 
 # minted
 latex/**/_minted
 latex/**/.minted
+
+# biblatex
+latex/**/*.bcf
+latex/**/*.blg
+latex/**/*.run.xml
 
 # stata
 stata/**/*.stswp
