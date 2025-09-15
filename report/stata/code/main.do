@@ -19,9 +19,7 @@ version 18
 // ssc install tabout, replace
 
 // globals
-global project "C:/Users/andres/repositories/am.as1/"
-global stata "$project/stata"
-global latex "$project/latex/report"
+global project "C:/Users/andres/repositories/am.as1/report"
 
 global code "$stata/code"
 global rawdata "$stata/data/raw"
