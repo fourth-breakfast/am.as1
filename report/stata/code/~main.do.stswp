@@ -1,13 +1,13 @@
 /*
-	project: assignment 1
-	course: applied microeconometrics
-	author: group 23
-	date: 16-09-25
+project: assignment 1
+course: applied microeconometrics
+author: group 23
+date: 16-09-25
 
-	input: income_bmi.dta
-	output: clean dataset, tables, graphs, regression results, log file
+input: income_bmi.dta
+output: clean dataset, tables, graphs, regression results, log file
 
-	description: empirical analysis of BMI-income relationship using OLS and IV estimation
+description: empirical analysis of BMI-income relationship using OLS and IV estimation
 */
 
 // setup

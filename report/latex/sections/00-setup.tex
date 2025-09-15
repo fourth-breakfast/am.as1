@@ -10,15 +10,6 @@
 \usepackage[style=verbose-ibid, backend=biber]{biblatex}
 \addbibresource{references.bib}
 
-% typography
-\setkomafont{subject}{\normalfont\bfseries\large}
-\setkomafont{title}{\normalfont\bfseries}
-\setkomafont{subtitle}{\normalfont\bfseries\large}
-\setkomafont{author}{\normalfont\normalsize}
-\setkomafont{date}{\normalfont\bfseries\normalsize}
-\setkomafont{disposition}{\normalfont\bfseries}
-\setkomafont{section}{\normalsize}
-
 % minted
 \usepackage{minted}
 \setminted{style=stata-light,bgcolor=gray!5,linenos=true}
@@ -28,15 +19,24 @@
 \usepackage{array}
 
 %globals
-\newcommand{\project}{C:/Users/andres/repositories/am.as1/}
-\newcommand{\tables}{\project stata/output/tables/}
-\newcommand{\figures}{\project stata/output/figures/}
+\newcommand{\project}{C:/Users/andres/repositories/am.as1/report}
+\newcommand{\tables}{\project /stata/output/tables/}
+\newcommand{\figures}{\project /stata/output/figures/}
 
 % commands
 \newcommand{\question}[2]{\section*{\underbar{Question #1 [#2]}}\vspace{-1em}}
 \newcommand{\note}[1]{\textit{#1}}
 \newcommand{\subquestion}[2]{\textit{#1) #2}}
 \newcommand{\icode}[1]{\mintinline{stata}{#1}}
+
+% typography
+\setkomafont{subject}{\normalfont\bfseries\large}
+\setkomafont{title}{\normalfont\bfseries}
+\setkomafont{subtitle}{\normalfont\bfseries\large}
+\setkomafont{author}{\normalfont\normalsize}
+\setkomafont{date}{\normalfont\bfseries\normalsize}
+\setkomafont{disposition}{\normalfont\bfseries}
+\setkomafont{section}{\normalsize}
 
 %headers
 \usepackage{scrlayer-scrpage}
