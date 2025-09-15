@@ -14,7 +14,8 @@
 *.listing
 
 # minted
-.minted
+**/_minted
+*.minted
 
 # biblatex
 *.bcf
@@ -23,3 +24,6 @@
 
 # stata
 *.stswp*
+
+# docs
+**/docs
