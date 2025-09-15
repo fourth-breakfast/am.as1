@@ -1,30 +1,25 @@
 # LaTeX auxiliary files
-latex/**/*.aux
-latex/**/*.log
-latex/**/*.fls
-latex/**/*.fdb_latexmk
-latex/**/*.synctex.gz
-latex/**/*.out
-latex/**/*.toc
-latex/**/*.nav
-latex/**/*.snm
-latex/**/*.vrb
-
-latex/**/*.bbl
-latex/**/*.bbl*
-latex/**/*.listing
-
-latex/**/*.synctex*
-latex/**/*.synctex.gz
+*.aux
+*.log
+*.fls
+*.fdb_latexmk
+*.synctex*
+*.out
+*.toc
+*.nav
+*.snm
+*.vrb
+*.bbl
+*.bbl*
+*.listing
 
 # minted
-latex/**/_minted
-latex/**/.minted
+.minted
 
 # biblatex
-latex/**/*.bcf
-latex/**/*.blg
-latex/**/*.run.xml
+*.bcf
+*.blg
+*.run.xml
 
 # stata
-stata/**/*.stswp
+*.stswp*
