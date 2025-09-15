@@ -1,4 +1,0 @@
-\begin{MintedVerbatim}[commandchars=\\\{\}]
-\PYG{k}{gen} overweight = (bmi\PYGZus{}cat \PYG{o}{\PYGZgt{}=} \PYG{l+m}{3})\PYG{k}{ if} \PYG{o}{!}\PYG{n+nf}{missing}(bmi\PYGZus{}cat)
-\PYG{k}{gen} obese = (bmi\PYGZus{}cat \PYG{o}{==} \PYG{l+m}{4})\PYG{k}{ if} \PYG{o}{!}\PYG{n+nf}{missing}(bmi\PYGZus{}cat)
-\end{MintedVerbatim}
