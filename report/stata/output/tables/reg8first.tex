@@ -1,0 +1,19 @@
+{
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{1}{ccccc}}
+\toprule
+            &       Coef.&   Robust SE&     p-value         &\multicolumn{2}{c}{[95\% Conf. Interval]}            \\
+\midrule
+black       &      1.8653&      0.9142&      0.0419\sym{*}  &      0.0685&      3.6620\\
+drinks      &     -0.0631&      0.0371&      0.0891         &     -0.1360&      0.0097\\
+cons        &     29.9576&      0.3832&      0.0000\sym{***}&     29.2044&     30.7107\\
+\midrule
+Number of obs.&         445&            &                     &            &            \\
+F           &      3.7073&            &                     &            &            \\
+Prob > F    &      0.0253&            &                     &            &            \\
+R-squared   &      0.0149&            &                     &            &            \\
+Adj R-squared&      0.0104&            &                     &            &            \\
+Root MSE    &      6.2735&            &                     &            &            \\
+\bottomrule
+\end{tabular}
+}

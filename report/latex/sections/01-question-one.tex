@@ -7,9 +7,9 @@ We begin by creating the \icode{bmi} variable. Note that, since Body Mass Index\
 
 \vspace{-1em}
 
-\begin{equation*}
-    BMI = \frac{\text{weight (kg)}}{\text{height (m)}^2}
-\end{equation*}
+\begin{equation}
+  \text{BMI} = \frac{\text{weight (kg)}}{\text{height (m)}^2}
+\end{equation}
 
 we must first convert our \icode{height} variable from centimeters to meters using a conversion factor of 100. We can generate both \icode{height_m} and \icode{bmi} through the use of the \icode{gen} command:
 
@@ -46,45 +46,50 @@ tab black overweight, row missing
 tab black obese, row missing
 \end{minted}
 
+\newpage
+
 \begin{minted}{stata}
      Race: |
      Black |
-   (1=Yes, |            overweight
-     0=No) |         0          1          . |     Total
------------+---------------------------------+----------
-         0 |        87        296         11 |       394 
-           |     22.08      75.13       2.79 |    100.00 
------------+---------------------------------+----------
-         1 |        13         50          2 |        65 
-           |     20.00      76.92       3.08 |    100.00 
------------+---------------------------------+----------
-         . |         1          0          0 |         1 
-           |    100.00       0.00       0.00 |    100.00 
------------+---------------------------------+----------
-     Total |       101        346         13 |       460 
-           |     21.96      75.22       2.83 |    100.00 
+   (1=Yes, |      overweight
+     0=No) |         0          1 |     Total
+-----------+----------------------+----------
+         0 |        87        296 |       383 
+           |     22.72      77.28 |    100.00 
+-----------+----------------------+----------
+         1 |        12         50 |        62 
+           |     19.35      80.65 |    100.00 
+-----------+----------------------+----------
+         . |         1          0 |         1 
+           |    100.00       0.00 |    100.00 
+-----------+----------------------+----------
+     Total |       100        346 |       446 
+           |     22.42      77.58 |    100.00 
 \end{minted}
 
 \begin{minted}{stata}
      Race: |
      Black |
-   (1=Yes, |              obese
-     0=No) |         0          1          . |     Total
------------+---------------------------------+----------
-         0 |       225        158         11 |       394 
-           |     57.11      40.10       2.79 |    100.00 
------------+---------------------------------+----------
-         1 |        28         35          2 |        65 
-           |     43.08      53.85       3.08 |    100.00 
------------+---------------------------------+----------
-         . |         1          0          0 |         1 
-           |    100.00       0.00       0.00 |    100.00 
------------+---------------------------------+----------
-     Total |       254        193         13 |       460 
-           |     55.22      41.96       2.83 |    100.00 
+   (1=Yes, |         obese
+     0=No) |         0          1 |     Total
+-----------+----------------------+----------
+         0 |       225        158 |       383 
+           |     58.75      41.25 |    100.00 
+-----------+----------------------+----------
+         1 |        27         35 |        62 
+           |     43.55      56.45 |    100.00 
+-----------+----------------------+----------
+         . |         1          0 |         1 
+           |    100.00       0.00 |    100.00 
+-----------+----------------------+----------
+     Total |       253        193 |       446 
+           |     56.73      43.27 |    100.00 
+
 \end{minted}
 
-As we can see from the output, the rate of overweight is similar amongst ethnic groups (75.1\% vs 76.9\%); however, obesity rates are markedly higher in black individuals (53.8\% vs 40.1\%). This suggests that, while the total overweight rates are similar, black overweight individuals are more likely to fall into the obese category.
+As seen in the output, the rate of overweight is similarly high amongst ethnic groups (75.1\% vs 76.9\%); however, obesity rates are markedly higher in black individuals (53.8\% vs 40.1\%). This suggests that, while the total overweight rates are similar, black overweight individuals are more likely to fall into the obese category.
+
+\newpage
 
 \subquestion{b}{Make an appropriate graph to \textbf{compare income distributions} across ethnic groups and discuss what you see.}
 
@@ -94,17 +99,20 @@ A clear comparison of income can be appreciated through the use of a box plot:
 graph box income, over(black)
 \end{minted}
 
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.8\textwidth]{\figures income_boxplot.png}
-\label{fig:income_boxplot}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{\figures income_boxplot.png}\hspace{4em}
+  \caption{Income Distribution by Ethnic Group}
+  \label{fig:income_boxplot}
 \end{figure}
 
-Looking at \ref{fig:income_boxplot}, we can see that both ethnic groups have a similar median income; however, the non-black group presents a larger interquartile range (IQR) than the black group, meaning higher income variability. It is also worth noting that the upper whiskers show how within the normal income range (excluding outliers), the non-black group reaches substantially higher income levels.
+Looking at figure \ref{fig:income_boxplot}, we can see that both ethnic groups have a similar median income; however, the non-black group presents a larger interquartile range (IQR) than the black group, meaning higher income variability. It is also worth noting that the upper whiskers show how, within the normal income range (excluding outliers), the non-black group reaches substantially higher income levels.
 
 \subquestion{c}{If there are \textbf{missing values} for BMI, discuss how they may impact the validity of your regression analysis.}
 
-Two main concerns could arise due to the missing BMI values in our sample. Firsly, missing BMI values effectively reduce the sample size. Secondly, if the BMI missingness is not random, but is instead related to other variables in our model, it could bias the regression estimates.
+The missing BMI values in our sample effectively reduce the sample size, leading to a loss in the precision of our estimates. If said missingness is not random, but is instead related to other variables in our model, it would also lead to selection bias in the regression estimates.
+
+\newpage
 
 \begin{minted}{stata}
 gen bmi_miss = missing(bmi)
@@ -114,40 +122,75 @@ tab black bmi_miss, row missing
 \begin{minted}{stata}
      Race: |
      Black |
-   (1=Yes, |       bmi_miss
-     0=No) |         0          1 |     Total
------------+----------------------+----------
-         0 |       383         11 |       394 
-           |     97.21       2.79 |    100.00 
------------+----------------------+----------
-         1 |        63          2 |        65 
-           |     96.92       3.08 |    100.00 
------------+----------------------+----------
-         . |         1          0 |         1 
-           |    100.00       0.00 |    100.00 
------------+----------------------+----------
-     Total |       447         13 |       460 
-           |     97.17       2.83 |    100.00 
+   (1=Yes, |  bmi_miss
+     0=No) |         0 |     Total
+-----------+-----------+----------
+         0 |       383 |       383 
+           |    100.00 |    100.00 
+-----------+-----------+----------
+         1 |        62 |        62 
+           |    100.00 |    100.00 
+-----------+-----------+----------
+         . |         1 |         1 
+           |    100.00 |    100.00 
+-----------+-----------+----------
+     Total |       446 |       446 
+           |    100.00 |    100.00 
 \end{minted}
 
-The above example shows how BMI missingness would not be related to the \icode{black} variable in our sample.
+The above table show how BMI missingness is not related to the \icode{black} variable. In order to check if its related to income, we construct a categorical income variable and compute its missingness:
+
+\begin{minted}{stata}
+gen income_cat = .
+replace income_cat = 1 if income < 25000 & !missing(income)
+replace income_cat = 2 if income >= 25000 & income < 50000 & !missing(income)
+replace income_cat = 3 if income >= 50000 & income < 100000 & !missing(income)
+replace income_cat = 4 if income >= 100000 & !missing(income)
+tab income_cat bmi_miss, row missing
+\end{minted}
+
+\newpage
+
+\begin{minted}{stata}
+           |       bmi_miss
+income_cat |         0          1 |     Total
+-----------+----------------------+----------
+         1 |       165          6 |       171 
+           |     96.49       3.51 |    100.00 
+-----------+----------------------+----------
+         2 |       132          3 |       135 
+           |     97.78       2.22 |    100.00 
+-----------+----------------------+----------
+         3 |       116          3 |       119 
+           |     97.48       2.52 |    100.00 
+-----------+----------------------+----------
+         4 |        34          1 |        35 
+           |     97.14       2.86 |    100.00 
+-----------+----------------------+----------
+     Total |       447         13 |       460 
+           |     97.17       2.83 |    100.00   
+\end{minted}
 
 \subquestion{d}{If there are \textbf{unreliable or implausible} values in any of the variables of interest, describe how you would identify them and drop them before proceeding with the rest of the analysis.}
 
-Unreliable and implausible values can be identified by examining the data with the help of \icode{summarize} and \icode{list}. 
+Unreliable and implausible values can be identified by examining the data with the help of \icode{summarize} and \icode{list}.
 
 \begin{minted}{stata}
 sum income height weight bmi
-list income height weight if income < 0 | income > 500000
-list height weight if height < 100 | height > 250
+list income height weight if income < 0
+list height weight if height < 0 | height > 272
 list bmi if bmi < 10 | bmi > 60
 \end{minted}
 
 Programmatically, \icode{flag_} variables can be generated when specific thresholds are passed, in which case they can be dropped with the \icode{drop} command.
 
 \begin{minted}{stata}
-gen flag_income = (income < 0 | income > 500000)
-gen flag_height = (height < 100 | height > 250)
+gen flag_income = (income < 0)
+gen flag_height = (height < 0 | height > 250)
 gen flag_bmi = (bmi < 10 | bmi > 60)
 drop if flag_income == 1 | flag_height == 1 | flag_bmi == 1
 \end{minted}
+
+\newpage
+
+In our case, we set the lower income threshold at 0, since it is not plausible to earn a negative income. For height, we chose 272cm as the upper height threshold, the highest reported height ever recorded in a human, as well as a lower threshold of 0, since it is not possible to stand at a negative height. For BMI, we set a lower threshold of 10, following the same reasoning as with height (lowest BMI ever reported), as well an upper threshold of 60.

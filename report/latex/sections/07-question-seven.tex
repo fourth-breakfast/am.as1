@@ -3,6 +3,30 @@
 
 \note{Do you think that \textbf{reverse causality} influences the OLS estimate of BMI? Explain.}
 
+In the case of income and body fat, reverse causality most likely exists due to the fact that income can influence body fat through differences in access to (healthy) food, exercise and healthcare. This introduces endogeneity bias into the model, which violates the OLS assumption that the explanatory variable (in our case, BMI) is uncorrelated to the error.
+
+In our example, assuming that higher income is indeed related to an overall healthier lifestyle, part of what the model estimates as the impact of BMI on income would instead be the reverse effect of income differences on BMI.
+
 \note{Estimate a multivariate regression model explaining \textbf{BMI as a function of income} and whether the individual is black.}
 
+\newpage
+
+A model utilizing income and black as explicative variables for BMI can be estimated with:
+
+\begin{minted}{stata}
+reg bmi income black, robust
+\end{minted}
+
+\begin{table}[H]
+    \begin{center}
+        \caption{Linear Regression: Reverse Causality}
+        \input{\tables reg7.tex}
+        \label{tab:reg7}    
+    \end{center}
+\end{table}
+
 \note{Is the coefficient of income statistically significant? Does this provide evidence that the variable BMI suffers/does not suffer from reverse causality in the previous models? Discuss.}
+
+Based on the above results, the income coefficient is definetely not statistically significant. It's p-value is estimated at 0.251, meaning that we cannot reject the null hypothesis that income has no effect on BMI; this, however, does not provide evidence about whether or not the dependent variable suffers from reverse causality.
+
+Had the income coefficient been significant, it would still not constitute proof of causality, but it could have served as a hint about the nature of the underlying relation between the variables in our model.

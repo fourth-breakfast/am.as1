@@ -16,13 +16,24 @@
 
 % figures
 \usepackage{graphicx}
+\usepackage{float}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+
+% estout
+\usepackage{booktabs}
+\usepackage{dcolumn}
 
 %globals
 \newcommand{\project}{C:/Users/andres/repositories/am.as1/report}
+\newcommand{\tables}{\project /stata/output/tables/}
 \newcommand{\figures}{\project /stata/output/figures/}
 
 % commands
-\newcommand{\question}[2]{\section*{\underbar{Question #1 [#2]}}\vspace{-1em}}
+\newcommand{\question}[2]{\section*{\underbar{Question #1 [#2]}}\vspace{-1em}
+    \setcounter{table}{0}\renewcommand{\thetable}{#1.\arabic{table}}
+    \setcounter{figure}{0}\renewcommand{\thefigure}{#1.\arabic{figure}}
+    \setcounter{equation}{0}\renewcommand{\theequation}{#1.\arabic{equation}}}
 \newcommand{\note}[1]{\textit{#1}}
 \newcommand{\subquestion}[2]{\textit{#1) #2}}
 \newcommand{\icode}[1]{\mintinline{stata}{#1}}
@@ -49,9 +60,9 @@
 \title{\Large{Assignment 1: Empirical Analysis}}
 \subtitle{Regression Analysis with Cross-Sectional Data, Endogeneity and Instrumental Variable Estimation}
 \author{\textbf{Group 23}\\[0.5em]
-    Kees-Piet Barnhoorn\\
-    Tyler McGee\\
-    Andres Pinon\\
-    Jolien Schaeffers}
+    Kees-Piet Barnhoorn 729384\\
+    Tyler McGee 781846\\
+    Andres Pinon 775387\\
+    Jolien Schaeffers 779155}
 \date{16 September 2025}
 

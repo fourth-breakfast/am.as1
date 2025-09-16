@@ -3,10 +3,79 @@
 
 \note{Use the log of income as the dependent variable. Start by creating this variable.}
 
+To create the \icode{ln_income} variable, we use the \icode{gen} command as follows:
+
+\begin{minted}{stata}
+gen ln_income = ln(income + 1)
+\end{minted}
+
+\icode{ln(income+1)} is the equation to ensure that data entries with income values of 0 are still included
+within the regression model.
+
 \subquestion{a}{Provide one reason why a logarithmic transformation of income may be useful in (linear) regression analysis.}
+
+A logarithmic transformation proves useful in addressing the right-skewedness of income, which arises from the fact that income's lower bound is set at 0. Additionally, it allows coefficients to be interpreted as percentage changes rather than absolute units, which is quite useful for the purposes of our analysis.
 
 \subquestion{b}{Estimate a regression model using OLS explaining the \textbf{log of income} as a function of \textbf{BMI as categorical variable} and whether the individual is black.}
 
+We can estimate said model using \icode{reg}. Note that the \icode{i.} prefix is used to treat a variable as categorical in the context of a regression. By doing so, the model will separately estimate coefficients for each of the \icode{bmi_cat} categories; otherwise, we would be assuming a constant effect within between each category.
+
+Adding \icode{b2} to the prefix specifies that \icode{bmi_cat2} (Normal Weight) is omitted in order to prevent multicollinearity. \icode{bmi_cat2} has been chosen due to the fact that, while the results are statistically equivalent independently of which category is omitted, in the case of BMI Normal Weight is a better baseline than Underweight.
+
+\begin{minted}{stata}
+reg ln_income ib2.bmi_cat black, robust
+\end{minted}
+
+\begin{table}[H]
+    \begin{center}
+        \caption{Linear Regression: Categorical BMI}
+        \input{\tables reg4b.tex}
+        \label{tab:reg4b}    
+    \end{center}
+\end{table}
+
+\newpage
+
 \subquestion{c}{Interpret the estimated coefficients of all the explanatory variables (\textbf{sign, magnitude, and significance}).}
 
+The estimated coefficients across the different BMI categories all show a positive relationship between BMI and income. They are also similar in terms of magnitude, with categories 1, 3 and 4 having magnitudes of 0.1791, 0.1807 and 0.1574, respectively. In terms of statistical significance, all three categories have corresponding p-values well above the 0.05 significance level, meaning we reject them as statistically significant.
+
+In the case of \icode{black}, its coefficient is estimated at -0.0464. Transforming the coefficient using the formula
+
+\begin{equation}
+    \% \text{ change} = (e^{\beta} - 1) \times 100
+\end{equation}
+
+meaning that belonging to the black ethnic group is associated with a decrease of roughly 4.75\% in annual income, all other values notwithstanding. It's statistical significance is rejected, since its p-value, 0.789, is well above the significance level.
+
 \subquestion{d}{Extend the model to estimate if the relationship between \textbf{BMI (in categories)} and income is different \textbf{across ethnic groups}. What do you conclude?}
+
+To estimate the differences in the relationship between \icode{bmi_cat} and income across different ethnic groups, we can use interaction variables. Conceptually, the model would be specified as
+
+\begin{equation}
+    \begin{aligned}
+        \ln(\text{Income}) & = \beta_0 + \beta_1 \text{Underweight} + \beta_2 \text{Overweight} + \beta_3 \text{Obese} + \beta_4 \text{Black} \\
+                           & \quad + \beta_5 (\text{Underweight} \times \text{Black}) + \beta_6 (\text{Overweight} \times \text{Black})       \\
+                           & \quad  + \beta_7 (\text{Obese} \times \text{Black}) + u
+    \end{aligned}
+\end{equation}
+
+In Stata, that can be easily achieved through the use of the \icode{##} operator.
+
+\begin{minted}{stata}
+reg income ib2.bmi_cat##i.black    
+\end{minted}
+
+\begin{table}[H]
+    \begin{center}
+        \caption{Linear Regression: Interaction Effects}
+        \input{\tables reg4d.tex}
+        \label{tab:reg4d}   
+    \end{center}
+\end{table}
+
+The extended model estimates clear differences in the relationship between BMI and income across both ethnic groups. While for non-black individuals BMI categories have small and statistically non-significant effects on income, for black individuals in both the Overweight and the Obese categories there is strong relationship between BMI and income. 
+
+The coefficient for \icode{bmi_cat3 * black}, 0.7923, implies that being both black and overweight is related to an increase of 139.17\% in annual income, compared to just a 8.3\% increase for non-black, overweight individuals. The p-value for this interaction term is given at 0.146, which could be considered marginally significant.
+
+In the case of \icode{bmi_cat4 * black}, 1.3837, implies an even bigger effect in cases in which an individual is both black and obese, in which case there would be an increase of 284.36\% in annual income over the baseline compared to a small decrease of 3.8\% for non-black, obese individuals. The p-value for this interaction is given at 0.004, well below our significance level of 0.05. This implies that coefficient $\beta_{\text{obese} \times \text{black}}$ is statistically quite significant.

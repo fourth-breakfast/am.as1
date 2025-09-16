@@ -8,7 +8,7 @@
    version="1.1"
    id="svg1"
    inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
-   sodipodi:docname="dag.svg"
+   sodipodi:docname="dag-crit.svg"
    inkscape:export-filename="dag.png"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96"
@@ -27,8 +27,8 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
      inkscape:zoom="0.32"
-     inkscape:cx="740.625"
-     inkscape:cy="904.6875"
+     inkscape:cx="806.25"
+     inkscape:cy="1014.0625"
      inkscape:window-width="1920"
      inkscape:window-height="1051"
      inkscape:window-x="-9"
@@ -127,6 +127,66 @@
     </marker>
     <marker
        style="overflow:visible"
+       id="ConcaveTriangle-1-83-6"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Concave triangle arrow"
+       markerWidth="5"
+       markerHeight="5"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid"
+       markerUnits="userSpaceOnUse">
+      <path
+         transform="scale(0.7)"
+         d="M -2,-4 9,0 -2,4 c 2,-2.33 2,-5.66 0,-8 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         id="path7-6-7-8" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="ConcaveTriangle-1-83-9"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Concave triangle arrow"
+       markerWidth="5"
+       markerHeight="5"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid"
+       markerUnits="userSpaceOnUse">
+      <path
+         transform="scale(0.7)"
+         d="M -2,-4 9,0 -2,4 c 2,-2.33 2,-5.66 0,-8 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         id="path7-6-7-2" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="ConcaveTriangle-1-4"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Concave triangle arrow"
+       markerWidth="5"
+       markerHeight="5"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid"
+       markerUnits="userSpaceOnUse">
+      <path
+         transform="scale(0.7)"
+         d="M -2,-4 9,0 -2,4 c 2,-2.33 2,-5.66 0,-8 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         id="path7-6-8" />
+    </marker>
+    <marker
+       style="overflow:visible"
        id="ConcaveTriangle-1-83-5"
        refX="0"
        refY="0"
@@ -145,6 +205,26 @@
          style="fill:context-stroke;fill-rule:evenodd;stroke:none"
          id="path7-6-7-5" />
     </marker>
+    <marker
+       style="overflow:visible"
+       id="ConcaveTriangle-18"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Concave triangle arrow"
+       markerWidth="5"
+       markerHeight="5"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid"
+       markerUnits="userSpaceOnUse">
+      <path
+         transform="scale(0.7)"
+         d="M -2,-4 9,0 -2,4 c 2,-2.33 2,-5.66 0,-8 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         id="path7-9" />
+    </marker>
   </defs>
   <g
      inkscape:label="Layer 1"
@@ -160,14 +240,24 @@
        inkscape:export-filename="dag.png"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#22363a;stroke-width:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1-8-1-89-2"
+       width="288"
+       height="216"
+       x="276"
+       y="846"
+       inkscape:export-filename="dag.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
     <path
        style="fill:none;fill-opacity:1;stroke:#22363a;stroke-width:6;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#ConcaveTriangle-1-83)"
        d="M 569,486 H 731"
        id="path6" />
     <path
-       style="fill:none;fill-opacity:1;stroke:#d10000;stroke-width:6.12022;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:18.3606, 18.3606;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#ConcaveTriangle-1-83-5)"
-       d="M 566.79949,596.79949 738.62057,768.62057"
-       id="path6-1" />
+       style="fill:none;fill-opacity:1;stroke:#d10000;stroke-width:6;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:18, 18;stroke-opacity:1;marker-end:url(#ConcaveTriangle-1-83-9);stroke-dashoffset:0"
+       d="M 569,954 H 731"
+       id="path6-5" />
     <rect
        style="fill:none;fill-opacity:1;stroke:#22363a;stroke-width:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect1-8-1-89-6"
@@ -204,10 +294,6 @@
        style="fill:none;fill-opacity:1;stroke:#22363a;stroke-width:6;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#ConcaveTriangle-1-83)"
        d="M 1500,599 V 761"
        id="path6-6-73" />
-    <path
-       style="fill:none;fill-opacity:1;stroke:#22363a;stroke-width:6;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#ConcaveTriangle)"
-       d="m 1189,954 h 162"
-       id="path6-6-4" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:45.3333px;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#22363a;fill-opacity:1;stroke-width:0.266667;stroke-linecap:square;stroke-linejoin:round"
@@ -269,23 +355,127 @@
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:45.3333px;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#22363a;fill-opacity:1;stroke-width:0.266667;stroke-linecap:square;stroke-linejoin:round"
        x="958.66083"
-       y="941.65948"
+       y="913.32617"
        id="text1-1"><tspan
          sodipodi:role="line"
          id="tspan1-6"
          x="958.66083"
-         y="941.65948">Current</tspan><tspan
+         y="913.32617">Current</tspan><tspan
          sodipodi:role="line"
          x="958.66083"
-         y="998.32611"
+         y="969.9928"
+         id="tspan6">Economic</tspan><tspan
+         sodipodi:role="line"
+         x="958.66083"
+         y="1026.6595"
          id="tspan5">Performance</tspan></text>
     <path
+       style="fill:none;fill-opacity:1;stroke:#d10000;stroke-width:6;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:18, 18;stroke-opacity:1;marker-end:url(#ConcaveTriangle-1-83-6);stroke-dashoffset:0"
+       d="M 420,599 V 761"
+       id="path6-6-73-6" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:45.3333px;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#22363a;fill-opacity:1;stroke-width:0.266667;stroke-linecap:square;stroke-linejoin:round"
+       x="418.6608"
+       y="913.32617"
+       id="text1-3"
+       inkscape:export-filename="dag-crit.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"><tspan
+         sodipodi:role="line"
+         x="418.6608"
+         y="913.32617"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:45.3333px;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif Bold';text-align:center;text-anchor:middle;fill:#22363a;fill-opacity:1"
+         id="tspan3-4">Current</tspan><tspan
+         sodipodi:role="line"
+         x="418.6608"
+         y="969.9928"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:45.3333px;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif Bold';text-align:center;text-anchor:middle;fill:#22363a;fill-opacity:1"
+         id="tspan7">Disease</tspan><tspan
+         sodipodi:role="line"
+         x="418.6608"
+         y="1026.6594"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:45.3333px;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif Bold';text-align:center;text-anchor:middle;fill:#22363a;fill-opacity:1"
+         id="tspan8">Environment</tspan></text>
+    <g
+       id="g1">
+      <path
+         style="fill:none;fill-opacity:1;stroke:#22363a;stroke-width:6;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#ConcaveTriangle)"
+         d="m 1189,932 h 162"
+         id="path6-6-4" />
+      <path
+         style="fill:none;fill-opacity:1;stroke:#22363a;stroke-width:6;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:18, 18;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#ConcaveTriangle-1-4)"
+         d="m 1109,976 h 162"
+         id="path6-6-45" />
+    </g>
+    <path
+       style="fill:none;fill-opacity:1;stroke:#d10000;stroke-width:6.12022;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:18.3606, 18.3606;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#ConcaveTriangle-1-83-5)"
+       d="M 567.20265,597.20265 739.02373,769.02373"
+       id="path6-1" />
+    <path
        style="fill:#22363a;stroke:#d10000;stroke-width:6;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       d="m 629.95315,689.95315 h 60"
+       d="m 632.0863,692.0863 h 60"
        id="path1" />
     <path
        style="fill:#22363a;stroke:#d10000;stroke-width:6;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       d="m 659.95315,659.95315 v 60"
-       id="path1-6" />
+       d="m 662.0863,662.0863 v 60"
+       id="path1-6"
+       inkscape:export-filename="dag-cont.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="fill:#22363a;stroke:#d10000;stroke-width:6;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 398.7868,673.0368 42.4264,42.4264"
+       id="path1-61" />
+    <path
+       style="fill:#22363a;stroke:#d10000;stroke-width:6;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 441.2132,673.0368 -42.4264,42.4264"
+       id="path1-6-4"
+       inkscape:export-filename="dag-cont.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="fill:#22363a;stroke:#d10000;stroke-width:6;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 643.0368,932.7868 42.4264,42.4264"
+       id="path1-61-1" />
+    <path
+       style="fill:#22363a;stroke:#d10000;stroke-width:6;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 685.4632,932.7868 -42.4264,42.4264"
+       id="path1-6-4-8"
+       inkscape:export-filename="dag-crit.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#22363a;stroke-width:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1-8-1-89-1-7"
+       width="288"
+       height="216"
+       x="1086"
+       y="1314" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:45.3333px;font-family:'CMU Sans Serif';-inkscape-font-specification:'CMU Sans Serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#22363a;fill-opacity:1;stroke-width:0.266667;stroke-linecap:square;stroke-linejoin:round"
+       x="1229.9779"
+       y="1409.7812"
+       id="text1-1-7"><tspan
+         sodipodi:role="line"
+         x="1229.9779"
+         y="1409.7812"
+         id="tspan5-4">Control</tspan><tspan
+         sodipodi:role="line"
+         x="1229.9779"
+         y="1466.4479"
+         id="tspan14">Variables</tspan></text>
+    <path
+       style="fill:none;fill-opacity:1;stroke:#22363a;stroke-width:6;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#ConcaveTriangle)"
+       d="m 1115.7399,1197.2062 114.5514,114.5512"
+       id="path6-6-73-5" />
+    <path
+       style="fill:none;fill-opacity:1;stroke:#22363a;stroke-width:6;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#ConcaveTriangle-18)"
+       d="m 1344.2601,1197.2062 -114.5514,114.5512"
+       id="path6-6-73-5-9"
+       inkscape:export-filename="dag-crit.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
   </g>
 </svg>

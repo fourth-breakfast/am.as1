@@ -2,3 +2,78 @@
 \question{5}{0.5 points}
 
 \note{Are any of the models in Question 2, Question 3 and Question 4 \textbf{correctly specified}? Explain with your own words. (Note: For this question, focus on functional form).}
+
+In order to test for omitted variables in our models, we can run Ramsey RESET tests on the regression models from questions 2, 3 and 4. In Stata, that can be comfortably done using the \icode{estat ovtest} command:
+
+\begin{minted}{stata}
+reg income bmi black, robust
+(output omitted)
+
+estat ovtest
+
+Ramsey RESET test for omitted variables
+Omitted: Powers of fitted values of income
+
+H0: Model has no omitted variables
+
+F(3, 439) =   2.63
+ Prob > F = 0.0496
+\end{minted}
+
+\begin{minted}{stata}
+reg income bmi bmi2 black, robust
+(output omitted)
+
+estat ovtest
+
+Ramsey RESET test for omitted variables
+Omitted: Powers of fitted values of income
+
+H0: Model has no omitted variables
+
+F(3, 438) =   3.24
+ Prob > F = 0.0219
+\end{minted}
+
+\newpage
+
+\begin{minted}{stata}
+reg ln_income ib2.bmi_cat black, robust
+(output omitted)
+
+estat ovtest
+
+Ramsey RESET test for omitted variables
+Omitted: Powers of fitted values of ln_income
+
+H0: Model has no omitted variables
+
+F(2, 438) =   4.35
+ Prob > F = 0.0135
+\end{minted}
+
+\begin{minted}{stata}
+reg ln_income ib2.bmi_cat##i.black
+(output omitted)
+
+estat ovtest
+
+Ramsey RESET test for omitted variables
+Omitted: Powers of fitted values of ln_income
+
+H0: Model has no omitted variables
+
+F(2, 438) =   4.35
+ Prob > F = 0.0135
+\end{minted}
+
+Perhaps unintuitively, a p-value $<=$ 0.05 is, in the context of this test, \emph{not} a promising result when analyzing a model. The RESET test is specified as:
+
+\begin{equation*}
+\begin{aligned}
+H_0&: \text{The model is correctly specified (no omitted variables)}\\
+H_1&: \text{The model is misspecified (omitted variables exist)}
+\end{aligned}
+\end{equation*}
+
+Looking at the RESET results for our models, the fact that all p-values fall below the significance level implies that, actually, we can reject all the null hypotheses and conclude that \emph{none} of our models so far have been correctly specified!

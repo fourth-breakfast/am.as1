@@ -1,0 +1,21 @@
+{
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{1}{ccccc}}
+\toprule
+            &       Coef.&   Robust SE&     p-value         &\multicolumn{2}{c}{[95\% Conf. Interval]}            \\
+\midrule
+bmi\_cat 1   &      0.1791&      0.1496&      0.2317         &     -0.1148&      0.4731\\
+bmi\_cat 3   &      0.1807&      0.1857&      0.3313         &     -0.1844&      0.5457\\
+bmi\_cat 4   &      0.1574&      0.1754&      0.3702         &     -0.1874&      0.5022\\
+black       &     -0.0464&      0.1729&      0.7885         &     -0.3862&      0.2934\\
+cons        &      9.9475&      0.1496&      0.0000\sym{***}&      9.6536&     10.2415\\
+\midrule
+Number of obs.&         445&            &                     &            &            \\
+F           &           .&            &                     &            &            \\
+Prob > F    &           .&            &                     &            &            \\
+R-squared   &      0.0029&            &                     &            &            \\
+Adj R-squared&     -0.0061&            &                     &            &            \\
+Root MSE    &      1.3332&            &                     &            &            \\
+\bottomrule
+\end{tabular}
+}

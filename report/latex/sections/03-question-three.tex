@@ -5,7 +5,7 @@
 
 \subquestion{a}{Do you think this assumption is likely to hold? Explain.}
 
-The above assumption is not likely to hold. In reality, we would expect values both at the very high and very low BMI thresholds to be associated with lower income, suggesting a non-linear relationship.
+The above assumption is not likely to hold. In reality, we would expect values both at the very high and very low BMI thresholds to be associated with lower income, suggesting a non-linear relationship. 
 
 Extremely low BMI could account for malnutrition or severe health issues, both of which we would expect to be related to lower incomes, as malnutrition shows difficultty accessing resources and severe health issues might limit an individual's capacity to earn a stable income.
 
@@ -18,23 +18,13 @@ gen bmi2 = bmi^2
 reg income bmi bmi2 black, robust    
 \end{minted}
 
-\begin{minted}{stata}
-Linear regression                               Number of obs     =        445
-                                                F(3, 441)         =       0.99
-                                                Prob > F          =     0.3967
-                                                R-squared         =     0.0049
-                                                Root MSE          =      39257
-
-------------------------------------------------------------------------------
-             |               Robust
-      income | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
--------------+----------------------------------------------------------------
-         bmi |     390.96   2387.682     0.16   0.870    -4301.689    5083.609
-        bmi2 |  -10.84818   35.06745    -0.31   0.757    -79.76827    58.07192
-       black |  -4812.927   5110.758    -0.94   0.347     -14857.4    5231.542
-       _cons |    40704.1   39289.77     1.04   0.301    -36514.35    117922.5
-------------------------------------------------------------------------------
-\end{minted}
+\begin{table}[H]
+    \begin{center}
+        \caption{Linear Regression: Non-linearities}
+        \input{\tables reg3b.tex}
+        \label{tab:reg3b}    
+    \end{center}
+\end{table}
 
 Analyzing the new model, we can see that the \icode{bmi} coefficient is now positive, while the \icode{bmi2} coefficient is negative. This suggests quadratic relationship where income first increases with BMI, then decreases. It follows the form
 
@@ -42,7 +32,7 @@ Analyzing the new model, we can see that the \icode{bmi} coefficient is now posi
     \text{Income} = 40,704 + 390.96 \times \text{BMI} - 10.85 \times \text{BMI}^2
 \end{equation}
 
-We will compare the effects of BMI on income taking two points, BMI = 20 and BMI = 30. In the first case, we get 
+We will compare the effects of BMI on income taking two points, BMI = 20 and BMI = 30. In the first case 
 
 \vspace{-1em}
 
@@ -50,7 +40,7 @@ We will compare the effects of BMI on income taking two points, BMI = 20 and BMI
     40,704 + 390.96 \times 20 - 10.85 \times 20 = 44,183.2
 \end{equation}
 
-while, in the second case, we get
+while, in the second case
 
 \vspace{-1em}
 
@@ -62,8 +52,8 @@ We see that income is lower at 30 BMI compared to 20 BMI. This coincides with ou
 
 \subquestion{c}{How does adding $BMI^2$ capture non-linearities in the relationship between BMI and income?},
 
-At BMI 15, the marginal effect would be positive but at BMI 35, the marginal effect becomes negative. Since a linear model cannot take this pattern into account, adding $BMI^2$ allows the slope of our model to change at different BMI values.
+As seen in the previous question, the marginal effect of BMI on income at different points of the BMI scale can have not just different magnitudes, but even different signs altogether. Since a linear model assumes a constant effect and cannot therefore accurately represent this pattern, adding $BMI^2$ allows the slope of our model to vary at different BMI values.
 
 \subquestion{d}{What is your \textbf{preferred specification} (2 or 3)? Explain.}
 
-The specification that includes $BMI^2$ is preffered over the original especification, since it allows the model to capture the relationship between income and BMI without assuming a linear pattern between the two.
+The non-linear specification is preffered over the original especification, since it allows the model to capture the relationship between income and BMI without assuming a linear pattern between the variables.

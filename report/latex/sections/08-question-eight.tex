@@ -1,12 +1,68 @@
 % question eight
+
+\newpage
+
 \question{8}{1 point}
 
 \note{We now consider using a variable that indicates how many times in the past seven days an individual has had sweetened drinks as an instrument for BMI.}
 
 \note{Estimate the model of Question 2 by 2SLS, using \icode{drinks} as an instrumental variable for BMI.}
 
+We can estimate models by 2SLS using the \icode{ivregress 2sls} command:
+
+\begin{minted}{stata}
+ivregress 2sls income (bmi = drinks) black, robust first    
+\end{minted}
+
+\begin{table}[H]
+    \begin{center}
+        \caption{2SLS: First-stage Regression}
+        \input{\tables reg8first.tex}
+        \label{tab:reg8first}  
+    \end{center}
+\end{table}
+
+\begin{table}[H]
+    \begin{center}
+        \caption{2SLS: IV Regression}
+        \input{\tables reg8iv.tex}
+        \label{tab:reg8iv} 
+    \end{center}
+\end{table}
+
+\newpage
+
 \subquestion{a}{Write down the estimated first stage of the model.}
+
+The first stage of the model would be specified as
+
+\begin{equation}
+    \begin{aligned}
+         & \text{BMI} = \pi_0 + \pi_1\text{drinks} + \pi_2\text{black} + v             \\
+         & \text{BMI} = 29.958  + 1.865\cdot\text{drinks} + 0.631\cdot\text{black} + v
+    \end{aligned}
+\end{equation}
 
 \subquestion{b}{\textbf{Interpret} the estimated coefficient for \icode{drinks} in the first stage regression. Is the estimated coefficient of BMI and its significance obtained with the IV estimator different from the OLS estimator in question 2? Does this suggest that the variable is endogenous or not? Discuss [Note: For this question, do not perform any additional analysis]}
 
+Drinking one sweet drink decreases the BMI value by 0.06 points on average. This coefficient is significant at the 10\% significance level; however it is important to check the strength of the instrument. Here we see that its coefficient magnitude is rather low in addition to the fact that BMI does not have a high value range.
+
+We see that the F value computed from the F-test is 3.7073. As a rule of thumb, this can be interpreted as a weak instrument, since the value of F is lower than 10 (3.7073 < 10). Additionally, we look at the difference between the coefficient of BMI and its significance between this IV regression, and the OLS regression in question 2. In question 2, the regression model states that BMI has a coefficient of -307.353, with an insignificant p-value of 0.269 (which is insignificant at the 10\% significance level). 
+
+In the IV regression, BMI has a coefficient of 8141.478 and an insignificant p-value of 0.173 (which is insignificant at the 10\% significance level). We see a huge difference in the coefficient's magnitude, as well as sign. Despite the statistical insignificance, this difference in coefficient magnitude and sign suggests that there is a potential omitted variable bias which underestimated the coefficient in the first model.
+
 \subquestion{c}{Perform a \textbf{formal test} of the null hypothesis that BMI is \textbf{exogenous}. What do you conclude? Explain.}
+
+To perform a formal test on the null hypothesis that BMI is exogenous, we perform an estat test within stata with the following code:
+
+\begin{minted}{stata}
+estat endogenous
+
+Tests of endogeneity
+H0: Variables are exogenous
+
+Robust score chi2(1)            =  5.02425  (p = 0.0250)
+Robust regression F(1,441)      =  5.61163  (p = 0.0183)
+\end{minted}
+
+This formal test shows through the p-value of the F-test that the null hypothesis of variables being exogenous; we have enough evidence to reject the null hypothesis at the 5\% significance level, but not the 1\% significance level (0.01 < 0.018 < 0.05). This is a clear sign that the variables are endogenous which means there is an apparent issue of endogeneity within the sample size which is also supported by the difference in the coefficients.

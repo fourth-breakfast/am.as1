@@ -1,7 +1,9 @@
 % question two
 \question{2}{0.9 points}
 
-\note{Estimate a multivariate regression model explaining income as a function of BMI and whether the individual is black. Thus, estimate: \begin{equation}income= \beta_0 + \beta_1BMI + \beta_2black + u\end{equation}}
+\note{Estimate a multivariate regression model explaining income as a function of BMI and whether the individual is black. Thus, estimate: \begin{equation*}\text{Income}= \beta_0 + \beta_1\text{BMI} + \beta_2\text{Black} + u\end{equation*}}
+
+\vspace{-1em}
 
 Using \icode{reg} with robust SE estimators:
 
@@ -9,47 +11,32 @@ Using \icode{reg} with robust SE estimators:
 reg income bmi black, robust
 \end{minted}
 
-\begin{minted}{stata}
-Linear regression                               Number of obs     =        445
-                                                F(2, 442)         =       1.07
-                                                Prob > F          =     0.3450
-                                                R-squared         =     0.0047
-                                                Root MSE          =      39216
-
-------------------------------------------------------------------------------
-             |               Robust
-      income | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
--------------+----------------------------------------------------------------
-         bmi |  -307.3532   277.6654    -1.11   0.269    -853.0618    238.3554
-       black |  -4839.756   5108.111    -0.95   0.344    -14878.96    5199.447
-       _cons |   51459.45   8992.888     5.72   0.000     33785.32    69133.59
-------------------------------------------------------------------------------    
-\end{minted}
+\begin{table}[H]
+    \begin{center}
+        \caption{Linear regression}
+        \input{\tables reg2.tex}
+        \label{tab:reg2}    
+    \end{center}
+\end{table}
 
 \subquestion{a}{Interpret the estimated coefficients of all the explanatory variables (\textbf{sign, magnitude, and significance}).}
 
-For the explanatory variable \icode{bmi}, the negative coefficient implies a negative relationship. The magnitude of the coefficient, 307.3532, implies that for each unit increase in BMI, an individual's yearly income would decrease by 307\$, ceteris paribus. Finally, it can be determined that the \icode{bmi} variable is not significant, as its p-value (0.269) exceeds our significance level (0.05).
+For the explanatory variable \icode{bmi}, the negative coefficient implies a negative relationship. The magnitude of the coefficient, 307.3532, implies that for each unit increase in BMI, an individual's observed annual income would decrease by roughly 307\$, ceteris paribus. Finally, it can be determined that the \icode{bmi} variable is not significant, as its p-value (0.269) exceeds our significance level (0.05).
 
-In the case of the variable \icode{black}, the negative coefficient implies again a negative relationship with the dependent variable. The magnitude of the coefficient, 4839.756, implies a decrease of roughly 4840\$ \space in annual income if the individual belongs to the black ethnic group, ceteris paribus. As in the case of \icode{bmi}, \icode{black}'s p-value (0.344) exceeds the significance level, meaning it is not significant.
+In the case of the variable \icode{black}, the negative coefficient implies an also negative relationship with the dependent variable. The magnitude of the coefficient, 4839.756, implies a decrease of roughly 4840\$ \space in observed annual income if an individual belongs to the black ethnic group, ceteris paribus. As in the case of \icode{bmi}, \icode{black}'s p-value (0.344) exceeds the significance level, meaning it is not significant.
 
 \subquestion{b}{What is the estimated 95\% Confidence Interval of $\beta_1$? What can you conclude based on the information in this confidence interval about the \textbf{effect of BMI on income}?}
 
-As seen in the regression above, the estimated 95\% CI of $\beta_1$ is [-788.01, 286.60]. Since it contains 0, we cannot reject the null hypothesis that BMI has no effect on income at the 5\% significance level. This aligns with the conclusions we derived from the p-values in the previous question.
+As seen in the regression above, the estimated 95\% CI of $\beta_1$ is [-788.01, 286.60]. Since 0 falls within it, we cannot reject the null hypothesis that BMI has no effect on income at the 5\% significance level. This aligns with the conclusions derived from analyzing the p-values in the previous question.
 
 \subquestion{c}{What is the \textbf{relative magnitude} of the effect of being black on income? Interpret the relative magnitude.}
 
-The relative magnitude of being black on income can be explained as the \% change in income experienced if an individual belongs to the black ethnic group, ceteris paribus. We can calculate it as:
+The relative magnitude of being black on income can be explained as the \% change in income experienced if an individual belongs to the black ethnic group, everything else notwithstanding. We can calculate it as:
 
 \vspace{-1em}
 
 \begin{equation}
-       \text{Relative Magnitude} = \text{Coefficient} / \text{Mean Income}
-\end{equation}
-
-\vspace{-1em}
-
-\begin{equation}
-       -4839.75 / 41,514.35 = -0.1165
+    \text{Relative Magnitude} = \frac{-4,839.75}{41,514.35} = -0.117 \text{ (11.7\%)}
 \end{equation}
 
 We can therefore determine that the coefficient for black ethnicity represents roughly 11.65\% of mean annual income.

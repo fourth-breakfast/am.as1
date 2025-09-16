@@ -17,11 +17,9 @@ version 18
 
 // globals
 global project "C:/Users/andres/repositories/am.as1/report/stata"
-
 global code "$project/code"
 global rawdata "$project/data/raw"
 global cleandata "$project/data/clean"
-
 global logs "$project/output/logs"
 global tables "$project/output/tables"
 global figures "$project/output/figures"
@@ -54,8 +52,7 @@ tab black overweight, row missing
 tab black obese, row missing
 
 // b
-graph box income, over(black) ///
-    title("Income Distribution by Ethnic Group") ///
+graph box income, over(black, relabel(1 "Non-Black" 2 "Black")) ///
     ytitle("Household Income (Euros)")
 	
 graph export "$figures/income_boxplot.png", replace
@@ -64,14 +61,21 @@ graph export "$figures/income_boxplot.png", replace
 gen bmi_miss = missing(bmi)
 tab black bmi_miss, row missing
 
+gen income_cat = .
+replace income_cat = 1 if income < 25000 & !missing(income)
+replace income_cat = 2 if income >= 25000 & income < 50000 & !missing(income)
+replace income_cat = 3 if income >= 50000 & income < 100000 & !missing(income)
+replace income_cat = 4 if income >= 100000 & !missing(income)
+tab income_cat bmi_miss, row missing
+
 // d
 sum income height weight bmi
-list income height weight if income < 0 | income > 500000
-list height weight if height < 100 | height > 250
+list income height weight if income < 0
+list height weight if height < 0 | height > 272
 list bmi if bmi < 10 | bmi > 60
 
-gen flag_income = (income < 0 | income > 500000)
-gen flag_height = (height < 100 | height > 250)
+gen flag_income = (income < 0)
+gen flag_height = (height < 0 | height > 250)
 gen flag_bmi = (bmi < 10 | bmi > 60)
 drop if flag_income == 1 | flag_height == 1 | flag_bmi == 1
 
@@ -94,19 +98,33 @@ gen bmi2 = bmi^2
 reg income bmi bmi2 black, robust
 
 // question four
-gen ln_income = ln(income)
+gen ln_income = ln(income + 1)
 
 // b
-reg ln_income i.bmi_cat black, robust
+reg ln_income ib2.bmi_cat black, robust
 
 // d
-reg income i.bmi_cat##i.black
+reg ln_income ib2.bmi_cat##i.black, robust
+
+// question five
+reg income bmi black, robust
+estat ovtest
+
+reg income bmi bmi2 black, robust
+estat ovtest
+
+reg ln_income ib2.bmi_cat black, robust
+estat ovtest
+
+reg ln_income ib2.bmi_cat##i.black
+estat ovtest
 
 // question seven
 reg bmi income black, robust
 
 // question eight
 ivregress 2sls income (bmi = drinks) black, robust first
+estat firststage
 
 // c
 estat endogenous
