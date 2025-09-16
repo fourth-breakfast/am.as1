@@ -24,6 +24,3 @@
 
 # stata
 *.stswp*
-
-# docs
-**/docs
