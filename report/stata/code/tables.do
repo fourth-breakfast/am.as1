@@ -1,10 +1,10 @@
-// ssc install estout, replace
-// ssc install outreg2, replace
+//ssc install estout, replace
+//ssc install outreg2, replace
 
 // question two
 eststo: reg income bmi black, robust
 esttab using "$tables/reg2.tex", replace ///
-    cells("b(pattern(1) fmt(4)) se(pattern(1) fmt(4)) p(pattern(1) fmt(4) star) ci_l(pattern(1) fmt(4)) ci_u(pattern(1) fmt(4))") ///
+    cells("b(fmt(4)) se(fmt(4)) p(fmt(4) star) ci_l(fmt(4)) ci_u(fmt(4))") ///
 	varlabels(_cons "cons") ///
 	collabels("Coef." "Robust SE" "p-value" "\multicolumn{2}{c}{[95\% Conf. Interval]}") ///
     stats(N F p r2 r2_a rmse, ///
